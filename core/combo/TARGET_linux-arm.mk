@@ -69,14 +69,12 @@ $(combo_2nd_arch_prefix)TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
 $(combo_2nd_arch_prefix)TARGET_arm_CFLAGS :=    -O2 \
                         -fomit-frame-pointer \
-                        -fstrict-aliasing    \
                         -funswitch-loops
 
 # Modules can choose to compile some source as thumb.
 $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
                         -Os \
-                        -fomit-frame-pointer \
-                        -fno-strict-aliasing
+                        -fomit-frame-pointer
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
@@ -88,7 +86,7 @@ $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
 # with -mlong-calls.  When built at -O0, those libraries are
 # too big for a thumb "BL <label>" to go from one end to the other.
 ifeq ($(FORCE_ARM_DEBUGGING),true)
-  $(combo_2nd_arch_prefix)TARGET_arm_CFLAGS += -fno-omit-frame-pointer -fno-strict-aliasing
+  $(combo_2nd_arch_prefix)TARGET_arm_CFLAGS += -fno-omit-frame-pointer
   $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS += -marm -fno-omit-frame-pointer
 endif
 
@@ -146,7 +144,6 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 $(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := \
 			-DNDEBUG \
 			-g \
-			-Wstrict-aliasing=2 \
 			-fgcse-after-reload \
 			-frerun-cse-after-loop \
 			-frename-registers
