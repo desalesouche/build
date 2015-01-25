@@ -118,14 +118,6 @@ endif
 
 include $(BUILD_SYSTEM)/strict.mk
 
-ifeq ($(ENABLE_MODULAR_O3),true)
-ifndef LOCAL_IS_HOST_MODULE
-ifeq ($(LOCAL_CLANG),)
-include $(BUILD_SYSTEM)/O3.mk
-endif
-endif
-endif
-
 ifeq ($(KRAIT_TUNINGS),true)
 ifndef LOCAL_IS_HOST_MODULE
 include $(BUILD_SYSTEM)/krait.mk
