@@ -65,12 +65,12 @@ function check_product()
     fi
 
     if (echo -n $1 | grep -q -e "^pa_") ; then
-       PA_BUILD=$(echo -n $1 | sed -e 's/^pa_//g')
-       export BUILD_NUMBER=$((date +%s%N ; echo $PA_BUILD; hostname) | openssl sha1 | sed -e 's/.*=//g; s/ //g' | cut -c1-10)
+       SS_BUILD=$(echo -n $1 | sed -e 's/^pa_//g')
+       export BUILD_NUMBER=$((date +%s%N ; echo $SS_BUILD; hostname) | openssl sha1 | sed -e 's/.*=//g; s/ //g' | cut -c1-10)
     else
-       PA_BUILD=
+       SS_BUILD=
     fi
-    export PA_BUILD
+    export SS_BUILD
 
         TARGET_PRODUCT=$1 \
         TARGET_BUILD_VARIANT= \
@@ -641,7 +641,7 @@ function tapas()
 function eat()
 {
     if [ "$OUT" ] ; then
-        MODVERSION=`sed -n -e'/ro\.pa\.version/s/.*=//p' $OUT/system/build.prop`
+        MODVERSION=`sed -n -e'/ro\.ss\.version/s/.*=//p' $OUT/system/build.prop`
         ZIPFILE=pa-$MODVERSION.zip
         ZIPPATH=$OUT/$ZIPFILE
         if [ ! -f $ZIPPATH ] ; then
