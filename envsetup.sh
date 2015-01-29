@@ -64,8 +64,8 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^pa_") ; then
-       SS_BUILD=$(echo -n $1 | sed -e 's/^pa_//g')
+    if (echo -n $1 | grep -q -e "^ss_") ; then
+       SS_BUILD=$(echo -n $1 | sed -e 's/^ss_//g')
        export BUILD_NUMBER=$((date +%s%N ; echo $SS_BUILD; hostname) | openssl sha1 | sed -e 's/.*=//g; s/ //g' | cut -c1-10)
     else
        SS_BUILD=
@@ -1681,7 +1681,7 @@ unset f
 
 # Add completions
 check_bash_version && {
-    dirs="sdk/bash_completion vendor/pa/bash_completion"
+    dirs="sdk/bash_completion vendor/ss/bash_completion"
     for dir in $dirs; do
     if [ -d ${dir} ]; then
         for f in `/bin/ls ${dir}/[a-z]*.bash 2> /dev/null`; do
