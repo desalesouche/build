@@ -1012,7 +1012,7 @@ INTERNAL_SYSTEMIMAGE_FILES := $(filter $(TARGET_OUT)/%, \
 
 systemimage-squisher: $(INTERNAL_SYSTEMIMAGE_FILES)
 	@echo -e "Optimizing PNGs to Shrink ROM Size!"
-	$(hide) APKCERTS=$(APKCERTS_FILE) ./vendor/pa/utils/squisher
+	$(hide) APKCERTS=$(APKCERTS_FILE) ./vendor/ss/utils/squisher
 
 .PHONY: systemimage-squisher
 
@@ -1676,7 +1676,7 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-SS_TARGET_PACKAGE := $(PRODUCT_OUT)/$(TARGET_PRODUCT)-$(ROM_VERSION).zip
+SS_TARGET_PACKAGE := $(PRODUCT_OUT)/$(TARGET_PRODUCT)-$(SS_VERSION).zip
 
 .PHONY: otapackage bacon
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
@@ -1689,7 +1689,7 @@ endif
 ifeq ($(USE_PREBUILT_CHROMIUM),1)
 ifneq ($(PRODUCT_PREBUILT_WEBVIEWCHROMIUM),yes)
 	@echo "Running Chromium prebuilt setup script..."
-	$(hide) . $(TOPDIR)vendor/pa/utils/chromium_prebuilt.sh $(TOP)
+	$(hide) . $(TOPDIR)vendor/ss/utils/chromium_prebuilt.sh $(TOP)
 endif
 endif
 	@echo -e ${CL_CYN}"Package Complete: $(SS_TARGET_PACKAGE)"${CL_RST}
@@ -1697,7 +1697,7 @@ endif
 ifeq ($(CHANGELOG),true)
 # Generate changelog
 	@echo -e ${CL_GRN}"Generating Changelog"${CL_RST}
-	$(hide) ./vendor/pa/utils/changelog.sh
+	$(hide) ./vendor/ss/utils/changelog.sh
 	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(TARGET_PRODUCT)-$(ROM_VERSION).txt
 endif
 
