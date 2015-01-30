@@ -24,7 +24,7 @@
 #1 Change Browser to another one, I think Slim is a possibility
 #2 Add DashClock Widget && Daydream from Slim
 #3 Recreate SlimLauncher as GS Launcher(it will take some time)
-#4 Email --> Gmail [Done]
+#4 Email is a must for Bluetooth because of some intermediaries 
 
 PRODUCT_PACKAGES += \
     Browser \
@@ -36,6 +36,7 @@ PRODUCT_PACKAGES += \
     DeskClock \
     DocumentsUI \
     DownloadProviderUi \
+    Email \
     Exchange2 \
     ExternalStorageProvider \
     FusedLocation \
@@ -55,7 +56,5 @@ PRODUCT_PACKAGES += \
     TeleService \
     VpnDialogs \
     MmsService
-
-#     Email \
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_base.mk)
