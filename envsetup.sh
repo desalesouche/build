@@ -483,7 +483,7 @@ function print_lunch_menu()
     echo
     echo "You're building on" $uname
     echo
-    echo "Lunch menu... I would recommend you manually lunch your target."
+    echo "Lunch menu... Write down the number of your target +1"
 
     local i=1
     local choice
@@ -504,7 +504,7 @@ function lunch()
         answer=$1
     else
         print_lunch_menu
-        echo -n "Which would you like? [aosp_arm-eng] "
+        echo -n "Consider adding +1 to the lunch number. Good compiling..."
         read answer
     fi
 
