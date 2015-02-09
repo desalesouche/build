@@ -84,7 +84,7 @@ $(info   HOST_OS=$(HOST_OS))
 $(info   HOST_OS_EXTRA=$(HOST_OS_EXTRA))
 $(info   HOST_BUILD_TYPE=$(HOST_BUILD_TYPE))
 $(info   BUILD_ID=$(BUILD_ID))
-ifeq ($(CHANGELOG_BUILD),true)
+ifeq ($(BUILD_CHANGELOG),true)
 $(info   CHANGELOG=$(BUILD_CHANGELOG))
 $(info   CHANGELOG_RANGE=$(CHANGELOG_RANGE))
 endif
