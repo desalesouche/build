@@ -1700,13 +1700,15 @@ endif
 
 # It doesn't need to be set in the product, let's make it universal...
 # Generate changelog
+ifeq ($(BUILD_CHANGELOG),true)
 	echo -e "Generating changelog..."
 	$(hide) ./vendor/ss/utils/changelog.sh
 	echo -e "$PRODUCT_OUT/CHANGELOG.txt created"
+endif
 
 # Chromium prebuilt
 ifeq ($(USE_PREBUILT_CHROMIUM),1)
-ifneq ($(PRODUCT_PREBUILT_WEBVIEWCHROMIUM),yes)
+ifneq ($(PRODUCT_PREBUILT_WEBVIEWCHROMIUM),true)
 	@echo "Running Chromium prebuilt setup script..."
 	$(hide) . $(TOPDIR)vendor/ss/utils/chromium_prebuilt.sh $(TOP)
 endif
