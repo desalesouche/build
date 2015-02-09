@@ -1696,19 +1696,20 @@ ifneq ($(TARGET_CUSTOM_RELEASETOOL),)
 endif
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(SS_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(SS_TARGET_PACKAGE) > $(SS_TARGET_PACKAGE).md5sum
+	@echo -e ${CL_CYN}"Package Complete: $(SS_TARGET_PACKAGE)"${CL_RST}
+
+# It doesn't need to be set in the product, let's make it universal...
+# Generate changelog
+	echo -e "Generating changelog..."
+	$(hide) ./vendor/ss/utils/changelog.sh
+	echo -e "$PRODUCT_OUT/CHANGELOG.txt created"
+
+# Chromium prebuilt
 ifeq ($(USE_PREBUILT_CHROMIUM),1)
 ifneq ($(PRODUCT_PREBUILT_WEBVIEWCHROMIUM),yes)
 	@echo "Running Chromium prebuilt setup script..."
 	$(hide) . $(TOPDIR)vendor/ss/utils/chromium_prebuilt.sh $(TOP)
 endif
-endif
-	@echo -e ${CL_CYN}"Package Complete: $(SS_TARGET_PACKAGE)"${CL_RST}
-
-ifeq ($(CHANGELOG),true)
-# Generate changelog
-	@echo -e ${CL_GRN}"Generating Changelog"${CL_RST}
-	$(hide) ./vendor/ss/utils/changelog.sh
-	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(TARGET_PRODUCT)-$(ROM_VERSION).txt
 endif
 
 endif    # recovery_fstab is defined
