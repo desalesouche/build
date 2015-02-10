@@ -29,7 +29,9 @@ LOCAL_DISABLE_GRAPHITE := \
 	libwebviewchromium_loader \
 	libwebviewchromium_plat_support \
 	libjni_filtershow_filters \
-	fio
+	fio \
+        libavcodec \
+        libavformat
 
 ifneq (1,$(words $(filter $(LOCAL_DISABLE_GRAPHITE), $(LOCAL_MODULE))))
 ifdef LOCAL_CONLYFLAGS

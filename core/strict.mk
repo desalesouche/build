@@ -68,7 +68,12 @@ LOCAL_DISABLE_STRICT := \
 	libc_gdtoa \
 	libc_openbsd \
 	libc \
-	libc_nomalloc
+	libc_nomalloc \
+        libcrypto_static \
+        libfuse \
+        libbusybox \
+        gatt_testtool \
+        libstagefright_webm
 
 # Force no strict-aliasing on some modules
 LOCAL_FORCE_DISABLE_STRICT := \
@@ -78,7 +83,12 @@ LOCAL_FORCE_DISABLE_STRICT := \
 	libziparchive \
 	libdiskconfig \
 	logd \
-	libjavacore
+	libjavacore \
+        libcrypto_static \
+        libfuse \
+        libbusybox \
+        gatt_testtool \
+        libstagefright_webm
 
 ifeq (1,$(words $(filter $(LOCAL_FORCE_DISABLE_STRICT),$(LOCAL_MODULE))))
 ifdef LOCAL_CONLYFLAGS
