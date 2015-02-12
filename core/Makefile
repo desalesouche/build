@@ -1623,7 +1623,7 @@ name := $(SS_BRAND)-$(TARGET_PRODUCT)-$(SS_BUILD_NAME)
 ifeq ($(TARGET_BUILD_TYPE),debug)
   name := $(name)_debug
 endif
-name := $(name)-$(shell date +"%Y-%m-%d)
+name := $(name)
 
 INTERNAL_OTA_PACKAGE_TARGET := $(PRODUCT_OUT)/$(name).zip
 
@@ -1702,7 +1702,8 @@ endif
 ifeq ($(BUILD_CHANGELOG),true)
 	echo -e "Generating changelog..."
 	$(hide) ./vendor/ss/utils/changelog.sh
-	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(LIQUID_VERSION)-$(TARGET_PRODUCT).txt
+	echo -e "Changelog can be found in /vendor/ss/"
+	echo -e "Changelog copied to the device"
 endif
 
 # Chromium prebuilt
