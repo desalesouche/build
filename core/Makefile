@@ -1698,12 +1698,11 @@ endif
 	$(hide) $(MD5SUM) $(SS_TARGET_PACKAGE) > $(SS_TARGET_PACKAGE).md5sum
 	@echo -e ${CL_CYN}"Package Complete: $(SS_TARGET_PACKAGE)"${CL_RST}
 
-# It doesn't need to be set in the product, let's make it universal...
-# Generate changelog
+# Generate changelog if product wants it
 ifeq ($(BUILD_CHANGELOG),true)
 	echo -e "Generating changelog..."
 	$(hide) ./vendor/ss/utils/changelog.sh
-	echo -e "$PRODUCT_OUT/CHANGELOG.txt created"
+	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(LIQUID_VERSION)-$(TARGET_PRODUCT).txt
 endif
 
 # Chromium prebuilt
