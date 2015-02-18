@@ -1697,13 +1697,27 @@ endif
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(SS_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(SS_TARGET_PACKAGE) > $(SS_TARGET_PACKAGE).md5sum
 	@echo -e ${CL_CYN}"Package Complete: $(SS_TARGET_PACKAGE)"${CL_RST}
+	@echo -e ${CL_CYN}""${CL_CYN}
+	@echo -e ${CL_CYN}"                  ___  ____ _     ___  ____                      "${CL_CYN}
+	@echo -e ${CL_CYN}"                 / __|((_)_| |_  (_)_)(( __)                     "${CL_CYN}
+	@echo -e ${CL_CYN}"                 \__ \/ _' | '_ \/ -_)| ' \                      "${CL_CYN}
+	@echo -e ${CL_CYN}"                 |___/\__,_|_.__/\___||_|\_|                     "${CL_CYN}
+	@echo -e ${CL_CYN}"             ___  _   _  ____  _  ___  ___  ______               "${CL_CYN}
+	@echo -e ${CL_CYN}"            / __|| | | ||    \| |/ __|| __||_    _|              "${CL_CYN}
+	@echo -e ${CL_CYN}"            \__ \| |_| ||  |\   |\__ \|-|_   |  |                "${CL_CYN}
+	@echo -e ${CL_CYN}"            |___/|_____||__| \__||___/|___/  |__|                "${CL_CYN}
+	@echo -e ${CL_CYN}""${CL_CYN}
+	@echo -e ${CL_CYN}"===========-Bliss Package Complete-==========="${CL_RST}
+	@echo -e ${CL_CYN}"Zip: "${CL_MAG} $(SS_TARGET_PACKAGE)${CL_RST}
+	@echo -e ${CL_CYN}"MD5: "${CL_MAG}" `cat $(SS_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
+	@echo -e ${CL_CYN}"Size:"${CL_MAG}" `ls -lah $(SS_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
+	@echo -e ${CL_CYN}"==============================================="${CL_RST}
+	@echo -e ""
 
-# Generate changelog if product wants it
+# Generate changelog if product wants it...
 ifeq ($(BUILD_CHANGELOG),true)
-	echo -e "Generating changelog..."
 	$(hide) ./vendor/ss/utils/changelog.sh
-	echo -e "Changelog can be found in /vendor/ss/"
-	echo -e "Changelog copied to the device"
+	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/system/etc/CHANGELOG.txt
 endif
 
 # Chromium prebuilt
