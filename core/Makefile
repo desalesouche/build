@@ -1011,12 +1011,12 @@ INTERNAL_SYSTEMIMAGE_FILES := $(filter $(TARGET_OUT)/%, \
     $(RECOVERY_RESOURCE_ZIP))
 
 systemimage-squisher-changelog: $(INTERNAL_SYSTEMIMAGE_FILES)
-	@echo -e "Optimizing PNGs to Shrink ROM Size!"
+	@echo -e ${CL_MAG} "Optimizing PNGs to Shrink ROM Size!" ${CL_MAG}
 	$(hide) APKCERTS=$(APKCERTS_FILE) ./vendor/ss/utils/squisher
 ifeq ($(BUILD_CHANGELOG),true)
-	@echo -e "Starting changelog generator..."
+	@echo -e ${CL_MAG} "Starting changelog generator..." ${CL_MAG}
 	$(hide) ./vendor/ss/utils/changelog.sh
-	@echo -e "Done!"
+	@echo -e ${CL_CYN} "Done!" ${CL_CYN}
 endif
 
 .PHONY: systemimage-squisher-changelog
@@ -1673,11 +1673,7 @@ KERNEL_PATH := $(TARGET_KERNEL_SOURCE)/arch/arm/configs/$(TARGET_KERNEL_CONFIG)
 $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	@echo "$(OTA_FROM_TARGET_SCRIPT)" > $(PRODUCT_OUT)/ota_script_path
 	@echo "$(override_device)" > $(PRODUCT_OUT)/ota_override_device
-	@echo -e ${CL_YLW}"Package OTA:"${CL_RST}" $@"
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(SS_TARGET_PACKAGE)
-	$(hide) $(MD5SUM) $(SS_TARGET_PACKAGE) > $(SS_TARGET_PACKAGE).md5sum
-	@echo -e ${CL_CYN}"Package Complete: $(SS_TARGET_PACKAGE)"${CL_RST}
-	@echo -e ${CL_CYN}""${CL_CYN}
+	@echo -e ${CL_MAG}""${CL_MAG}
 	@echo -e ${CL_CYN}"                  ___  ____ _     ___  ____                      "${CL_CYN}
 	@echo -e ${CL_CYN}"                 / __|((_)_| |_  (_)_)(( __)                     "${CL_CYN}
 	@echo -e ${CL_CYN}"                 \__ \/ _' | '_ \/ -_)| ' \                      "${CL_CYN}
@@ -1685,14 +1681,9 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	@echo -e ${CL_CYN}"             ___  _   _  ____  _  ___  ___  ______               "${CL_CYN}
 	@echo -e ${CL_CYN}"            / __|| | | ||    \| |/ __|| __||_    _|              "${CL_CYN}
 	@echo -e ${CL_CYN}"            \__ \| |_| ||  |\   |\__ \|-|_   |  |                "${CL_CYN}
-	@echo -e ${CL_CYN}"            |___/|_____||__| \__||___/|___/  |__|                "${CL_CYN}
-	@echo -e ${CL_CYN}""${CL_CYN}
-	@echo -e ${CL_CYN}"===========-Bliss Package Complete-==========="${CL_RST}
-	@echo -e ${CL_CYN}"Zip: "${CL_MAG} $(SS_TARGET_PACKAGE)${CL_RST}
-	@echo -e ${CL_CYN}"MD5: "${CL_MAG}" `cat $(SS_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
-	@echo -e ${CL_CYN}"Size:"${CL_MAG}" `ls -lah $(SS_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
-	@echo -e ${CL_CYN}"==============================================="${CL_RST}
-	@echo -e ""
+	@echo -e ${CL_CYN}"            |___/|_____||__| \__||___/|___/  |__|                "${CL_MAG}
+	@echo -e ${CL_MAG}""${CL_MAG}
+	@echo -e ${CL_MAG}"Package OTA:"${CL_RST}" $@"
 	$(hide) MKBOOTIMG=$(MKBOOTIMG) \
 	   $(OTA_FROM_TARGET_SCRIPT) -v \
 	   $(block_ota) \
