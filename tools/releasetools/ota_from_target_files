@@ -682,20 +682,11 @@ def WriteFullOTAPackage(input_zip, output_zip):
                    ""+input_zip.read("SYSTEM/addon.d/UPDATE-SuperSU.zip"))
     script.Mount("/system")
     script.FlashSuperSU()
-    script.Print("Flashing Viper4Android...")
-    common.ZipWriteStr(output_zip, "viper/viper.zip",
-                   ""+input_zip.read("SYSTEM/addon.d/Viper.zip"))
-    script.Mount("/system")
-    script.FlashViper()
   else:
     script.Print("Flashing SuperSU...")
     common.ZipWriteStr(output_zip, "supersu/supersu.zip",
                    ""+input_zip.read("SYSTEM/addon.d/UPDATE-SuperSU.zip"))
-    script.FlashSuperSU()
-    script.Print("Flashing Viper4Android...")
-    common.ZipWriteStr(output_zip, "viper/viper.zip",
-                   ""+input_zip.read("SYSTEM/addon.d/Viper.zip"))
-    script.FlashViper()
+    script.FlashSuperSU()  
 
   script.ShowProgress(0.05, 5)
   script.WriteRawImage("/boot", "boot.img")
