@@ -73,7 +73,8 @@ LOCAL_DISABLE_STRICT := \
         libfuse \
         libbusybox \
         gatt_testtool \
-        libstagefright_webm
+        libstagefright_webm \
+        libc_malloc
 
 # Force no strict-aliasing on some modules
 LOCAL_FORCE_DISABLE_STRICT := \
@@ -88,7 +89,8 @@ LOCAL_FORCE_DISABLE_STRICT := \
         libfuse \
         libbusybox \
         gatt_testtool \
-        libstagefright_webm
+        libstagefright_webm \
+        libc_malloc
 
 ifeq (1,$(words $(filter $(LOCAL_FORCE_DISABLE_STRICT),$(LOCAL_MODULE))))
 ifdef LOCAL_CONLYFLAGS
